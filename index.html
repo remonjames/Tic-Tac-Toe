@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1>Tic Tac Toe</h1>
+    </header>
+    <main>
+        <section class="gameBoard">
+            <div class="playerOne">
+                <h2 class="playerName">Player One</h2>
+                <h3 class="playerMark">X</h3>
+                <h3 id="playerOneScore" class="playerScore">Score: 0</h3>
+            </div>
+            <div class="board turn-x" id="board">
+            </div>
+            <div class="playerTwo">
+                <h2 class="playerName">Player Two</h2>
+                <h3 class="playerMark">O</h3>
+                <h3 id="playerTwoScore" class="playerScore">Score: 0</h3>
+            </div>
+        </section>
+
+        <section class="winningMsg">
+            <h2 class="message">Player 1's turn</h2>
+            <button id="nextRoundBtn">Next Round</button>
+            <button id="resetBtn">Reset</button>
+        </section>
+    </main>
+
+
+
+
+    <script src="app.js"></script>
+</body>
+
+</html>
