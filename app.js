@@ -129,6 +129,7 @@ const gameModule = (() => {
         playerOne.score = 0;
         playerTwo.score = 0;
         round = 0;
+        isGameOver = true;
         updateScores();
         newRound();
     }
