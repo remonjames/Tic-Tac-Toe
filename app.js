@@ -30,6 +30,20 @@ const gameModule = (() => {
     let playerTwoScore = document.querySelector("#playerTwoScore");
     let nextRoundBtn = document.querySelector("#nextRoundBtn");
     let resetBtn = document.querySelector("#resetBtn");
+    let playerOneName = document.getElementById("playerOneName");
+    let playerTwoName = document.getElementById("playerTwoName");
+
+
+    playerOneName.addEventListener("input", setName);
+    playerTwoName.addEventListener("input", setName);
+
+    function setName(e) {
+        if (e.target.id === "playerOneName") {
+            playerOne.name = playerOneName.value;
+        } else {
+            playerTwo.name = playerTwoName.value;
+        }
+    }
 
     for (let cell of cells) {
         cell.addEventListener("click", placeMarker, { once: true });
@@ -57,21 +71,9 @@ const gameModule = (() => {
             isGameOver = true;
             message.innerText = "Draw";
         }
-    }
-
-
-    function nextPlayerTurn() {
-        if (!isGameOver) {
-            currentPlayer = currentPlayer == playerOne ? playerTwo : playerOne;
-            gameBoard.classList.add(`turn-${currentPlayer.marker}`)
-            message.innerText = `${currentPlayer.name}'s turn`;
+        if (checkWinner() || filledSpots === 9) {
+            nextRoundBtn.classList.add("nextRound");
         }
-
-    }
-
-    function updateScores() {
-        playerOneScore.innerText = `Score: ${playerOne.score}`;
-        playerTwoScore.innerText = `Score: ${playerTwo.score}`;
     }
 
     const winningCombos = [
@@ -94,8 +96,39 @@ const gameModule = (() => {
     }
 
 
+    function nextPlayerTurn() {
+        if (!isGameOver) {
+            currentPlayer = currentPlayer == playerOne ? playerTwo : playerOne;
+            gameBoard.classList.add(`turn-${currentPlayer.marker}`)
+            message.innerText = `${currentPlayer.name}'s turn`;
+        }
+
+    }
+
+    function updateScores() {
+        playerOneScore.innerText = `Score: ${playerOne.score}`;
+        playerTwoScore.innerText = `Score: ${playerTwo.score}`;
+    }
+
+
     nextRoundBtn.addEventListener("click", newRound);
     resetBtn.addEventListener("click", resetGame);
+
+    function newRound() {
+        if (isGameOver) {
+            for (let cell of cells) {
+                cell.classList.remove("x");
+                cell.classList.remove("o");
+                gameBoard.classList.remove("turn-x");
+                gameBoard.classList.remove("turn-o");
+                nextRoundBtn.classList.remove("nextRound");
+                cell.addEventListener("click", placeMarker, { once: true });
+                filledSpots = 0;
+                isGameOver = false;
+                setStartPlayer();
+            }
+        }
+    }
 
     function setStartPlayer() {
         round += 1;
@@ -108,23 +141,6 @@ const gameModule = (() => {
         message.innerText = `${currentPlayer.name}'s turn`;
     }
 
-    function newRound() {
-        if (isGameOver) {
-            for (let cell of cells) {
-                cell.classList.remove("x");
-                cell.classList.remove("o");
-                gameBoard.classList.remove("turn-x");
-                gameBoard.classList.remove("turn-o");
-                cell.addEventListener("click", placeMarker, { once: true });
-                filledSpots = 0;
-                isGameOver = false;
-                setStartPlayer();
-            }
-        }
-    }
-
-
-
     function resetGame() {
         playerOne.score = 0;
         playerTwo.score = 0;
@@ -133,6 +149,7 @@ const gameModule = (() => {
         updateScores();
         newRound();
     }
+
 
     return {
         playerOne,

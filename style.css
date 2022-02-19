@@ -56,7 +56,12 @@ main {
 }
 
 .playerName {
-    font-size: 2.5rem;
+    font-size: 2rem;
+    font-weight: 700;
+    background-color: lightgoldenrodyellow;
+    border: none;
+    width: 80%;
+    text-align: center;
 }
 
 .playerScore {
@@ -167,6 +172,28 @@ main {
     background-color: maroon;
     color: white;
     font-size: 1rem;
-    border-radius: 15px;
+    border-radius: 7px;
     margin: 20px;
+}
+
+.winningMsg button + button:hover {
+    background-color: rgb(168, 20, 20)
+}
+
+.winningMsg button+ button:active {
+    background-color: rgb(88, 20, 20);
+}
+
+.winningMsg .nextRound {
+    background-color: green;
+}
+
+.winningMsg .nextRound:hover {
+    background-color: lime;
+    color: black;
+}
+
+.winningMsg .nextRound:active {
+    background-color: darkgreen;
+    color: white;
 }
