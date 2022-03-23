@@ -177,7 +177,7 @@ main {
 }
 
 .winningMsg button + button:hover {
-    background-color: rgb(168, 20, 20)
+    background-color: rgb(168, 20, 20);
 }
 
 .winningMsg button+ button:active {

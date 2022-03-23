@@ -150,10 +150,4 @@ const gameModule = (() => {
         newRound();
     }
 
-
-    return {
-        playerOne,
-        playerTwo
-    }
-
 })();
